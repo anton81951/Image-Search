@@ -33,26 +33,14 @@ const ImageModal: React.FC<ImageModalProps> = ({
   altText,
   closeModal,
 }) => {
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  };
-
-  const handleOverlayClick = (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget) {
-      closeModal();
-    }
-  };
-
   return (
     <Modal
       isOpen={isOpen}
       style={customStyles}
       contentLabel="Image Modal"
       onRequestClose={closeModal}
-      onKeyDown={handleKeyDown}
-      onClick={handleOverlayClick}
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
     >
       {imageUrl && <img src={imageUrl} alt={altText} />}
     </Modal>

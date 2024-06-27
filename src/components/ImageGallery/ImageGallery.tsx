@@ -5,10 +5,10 @@ import styles from './ImageGallery.module.css';
 
 interface ImageGalleryProps {
   pictures: Picture[];
-  onLoadMore: () => void;
+  onImageClick: (imageUrl: string) => void;
 }
 
-const ImageGallery: React.FC<ImageGalleryProps> = ({ pictures, onLoadMore }) => {
+const ImageGallery: React.FC<ImageGalleryProps> = ({ pictures, onImageClick }) => {
   return (
     <ul className={styles.galleryShape}>
       {pictures.map((picture) => (
@@ -18,11 +18,10 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ pictures, onLoadMore }) => 
             likes={picture.likes}
             imageUrl={picture.urls.small}
             altText={picture.alt_description}
-            onImageClick={() => {}}
+            onImageClick={() => onImageClick(picture.urls.small)}
           />
         </li>
       ))}
-      <button onClick={onLoadMore}>Load More</button>
     </ul>
   );
 };

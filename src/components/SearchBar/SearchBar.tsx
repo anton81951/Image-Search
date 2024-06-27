@@ -1,24 +1,22 @@
-import { useState } from "react";
-import styles from "./SearchBar.module.css";
-import { FaSearch } from "react-icons/fa";
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import React, { useState } from 'react';
+import styles from './SearchBar.module.css';
+import { FaSearch } from 'react-icons/fa';
 
-const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+interface SearchBarProps {
+  onSearch: (topic: string) => void;
+}
 
-  const handleSubmit = (e) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchTerm.trim() === "") {
-      iziToast.error({
-        title: "Error",
-        message: "Please enter something to search",
-        position: "center",
-      });
+    if (searchTerm.trim() === '') {
+      alert('Please enter something to search');
       return;
     }
     onSearch(searchTerm);
-    setSearchTerm("");
+    setSearchTerm('');
   };
 
   return (
@@ -40,4 +38,3 @@ const SearchBar = ({ onSearch }) => {
 };
 
 export default SearchBar;
-

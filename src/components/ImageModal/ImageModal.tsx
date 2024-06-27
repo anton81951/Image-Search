@@ -1,5 +1,14 @@
 import Modal from 'react-modal';
-Modal.setAppElement("#root")
+
+// Set app element for accessibility (optional)
+Modal.setAppElement('#root');
+
+interface ImageModalProps {
+  isOpen: boolean;
+  imageUrl: string | null;
+  altText: string;
+  closeModal: () => void;
+}
 
 const customStyles = {
   overlay: {
@@ -19,14 +28,19 @@ const customStyles = {
   },
 };
 
-const ImageModal = ({ isOpen, imageUrl, altText, closeModal }) => {
-  const handleKeyDown = (event) => {
+const ImageModal: React.FC<ImageModalProps> = ({
+  isOpen,
+  imageUrl,
+  altText,
+  closeModal,
+}) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Escape') {
       closeModal();
     }
   };
 
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
       closeModal();
     }

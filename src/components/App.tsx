@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
-
 import SearchBar from './SearchBar/SearchBar';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 import ImageGallery from './ImageGallery/ImageGallery';
 import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
 import Loader from './Loader/Loader';
 import ImageModal from './ImageModal/ImageModal';
-
-import { fetchPictures } from '../pictures-api';
-
+import { fetchPictures, Picture } from '../pictures-api'; // Assuming fetchPictures returns an array of Picture objects
 import styles from './App.module.css';
 
-const App = () => {
-  const [pictures, setPictures] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
+const App: React.FC = () => {
+  const [pictures, setPictures] = useState<Picture[]>([]);
+  const [error, setError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showLoadMoreBtn, setShowLoadMoreBtn] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // New state for error message
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -35,25 +33,26 @@ const App = () => {
         setShowLoadMoreBtn(response.length > 0);
       } catch (error) {
         setError(true);
+        setErrorMessage('Failed to fetch pictures. Please try again.'); 
       } finally {
         setIsLoading(false);
       }
     };
+
     loadPictures();
   }, [page, searchTerm]);
 
-  const handleSearch = async (topic) => {
-    
+  const handleSearch = async (topic: string) => {
     setSearchTerm(topic);
     setPage(1);
     setPictures([]);
   };
 
   const handleLoadMore = () => {
-    setPage(page + 1);
+    setPage((prevPage) => prevPage + 1);
   };
 
-  const openModal = (imageUrl) => {
+  const openModal = (imageUrl: string) => {
     setSelectedImage(imageUrl);
     setIsModalOpen(true);
   };
@@ -70,7 +69,7 @@ const App = () => {
       </header>
       <div className={styles.generalShape}>
         {isLoading && <Loader />}
-        {error && <ErrorMessage />}
+        {error && <ErrorMessage message={errorMessage} />}
         {pictures.length > 0 && <ImageGallery pictures={pictures} onImageClick={openModal} />}
         {showLoadMoreBtn && !isLoading && <LoadMoreBtn onClick={handleLoadMore} />}
         <ImageModal isOpen={isModalOpen} imageUrl={selectedImage} altText="Selected Image" closeModal={closeModal} />

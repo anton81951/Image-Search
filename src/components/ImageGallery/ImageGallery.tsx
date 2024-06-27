@@ -1,14 +1,28 @@
+import React from 'react';
 import ImageCard from '../ImageCard/ImageCard';
+import { Picture } from '../../pictures-api';
 import styles from './ImageGallery.module.css';
 
-const ImageGallery = ({ pictures, onImageClick }) => {
+interface ImageGalleryProps {
+  pictures: Picture[];
+  onLoadMore: () => void;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ pictures, onLoadMore }) => {
   return (
     <ul className={styles.galleryShape}>
       {pictures.map((picture) => (
         <li key={picture.id}>
-          <ImageCard onImageClick={onImageClick} autohor={picture.user.username} likes={picture.likes} imageUrl={picture.urls.small} altText={picture.alt_description} />
+          <ImageCard
+            author={picture.user.username}
+            likes={picture.likes}
+            imageUrl={picture.urls.small}
+            altText={picture.alt_description}
+            onImageClick={() => {}}
+          />
         </li>
       ))}
+      <button onClick={onLoadMore}>Load More</button>
     </ul>
   );
 };

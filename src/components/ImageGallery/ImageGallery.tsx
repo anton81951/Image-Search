@@ -16,9 +16,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ pictures, onImageClick }) =
           <ImageCard
             author={picture.user.username}
             likes={picture.likes}
-            imageUrl={picture.urls.small}
+            imageUrl={picture.urls.regular}
             altText={picture.alt_description}
-            onImageClick={() => onImageClick(picture.urls.small)}
+            onImageClick={() => onImageClick(picture.urls.regular)}
           />
         </li>
       ))}

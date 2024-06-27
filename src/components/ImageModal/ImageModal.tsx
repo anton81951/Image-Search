@@ -11,7 +11,7 @@ interface ImageModalProps {
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     zIndex: 1000,
   },
   content: {

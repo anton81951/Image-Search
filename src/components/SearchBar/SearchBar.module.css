@@ -8,13 +8,21 @@
     margin-bottom: 50px;
 }
 
-.inpurStyle {
+.inputStyle {
     padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .searchBtn{
-    border: none;
+    padding: 20px 40px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    padding: 20px;
 }
 
+.searchBtn:hover {
+box-shadow: none;
+}

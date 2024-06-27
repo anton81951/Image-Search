@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 
-// Set app element for accessibility (optional)
 Modal.setAppElement('#root');
 
 interface ImageModalProps {

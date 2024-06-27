@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 import ImageGallery from './ImageGallery/ImageGallery';
 import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
 import Loader from './Loader/Loader';
 import ImageModal from './ImageModal/ImageModal';
-import { fetchPictures, Picture } from '../pictures-api'; // Assuming fetchPictures returns an array of Picture objects
+import { fetchPictures, Picture } from '../pictures-api';
 import styles from './App.module.css';
 
-const App: React.FC = () => {
+interface AppProps {}
+
+const App: React.FC<AppProps> = () => {
   const [pictures, setPictures] = useState<Picture[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,7 +19,7 @@ const App: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [showLoadMoreBtn, setShowLoadMoreBtn] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // New state for error message
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -69,10 +71,17 @@ const App: React.FC = () => {
       </header>
       <div className={styles.generalShape}>
         {isLoading && <Loader />}
-        {error && <ErrorMessage message={errorMessage} />}
-        {pictures.length > 0 && <ImageGallery pictures={pictures} onImageClick={openModal} />}
+        {error && <ErrorMessage message={errorMessage || ''} />}
+        {pictures.length > 0 && (
+          <ImageGallery pictures={pictures} onImageClick={openModal} />
+        )}
         {showLoadMoreBtn && !isLoading && <LoadMoreBtn onClick={handleLoadMore} />}
-        <ImageModal isOpen={isModalOpen} imageUrl={selectedImage} altText="Selected Image" closeModal={closeModal} />
+        <ImageModal
+          isOpen={isModalOpen}
+          imageUrl={selectedImage}
+          altText="Selected Image"
+          closeModal={closeModal}
+        />
       </div>
     </>
   );

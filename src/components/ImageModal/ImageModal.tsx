@@ -24,9 +24,7 @@ const customStyles = {
     transform: 'translate(-50%, 0)',
     border: 'none',
     background: 'transparent',
-    padding: 20,
-    maxWidth: '100%', // Ensure modal content respects its container width
-    boxSizing: 'border-box', // Include padding and border in width calculations
+    boxSizing: 'border-box',
   },
 };
 

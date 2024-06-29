@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import styles from "./ImageModal.module.css";
-import { object } from 'prop-types';
 
 Modal.setAppElement('#root');
 
@@ -26,8 +25,8 @@ const customStyles = {
     border: 'none',
     background: 'transparent',
     padding: 20,
-    maxWidth: '100%',
-    boxSizing: 'border-box',
+    maxWidth: '100%', // Ensure modal content respects its container width
+    boxSizing: 'border-box', // Include padding and border in width calculations
   },
 };
 
@@ -46,7 +45,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
       shouldCloseOnEsc={true}
       shouldCloseOnOverlayClick={true}
     >
-      {imageUrl && <img src={imageUrl} alt={altText} />}
+      {imageUrl && <img className={styles.modalPicture} src={imageUrl} alt={altText} />}
     </Modal>
   );
 };

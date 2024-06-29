@@ -1,4 +1,6 @@
 import Modal from 'react-modal';
+import styles from "./ImageModal.module.css";
+import { object } from 'prop-types';
 
 Modal.setAppElement('#root');
 
@@ -15,22 +17,18 @@ const customStyles = {
     zIndex: 1000,
   },
   content: {
-    top: '50%',
+    top: '10%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -20%)',
     border: 'none',
     background: 'transparent',
     padding: 0,
-    '@media (max-width: 768px)': {
-      top: '20px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      margin: 0,
-      maxWidth: '250px',
-    },
+    width: '80%',
+    maxWidth: '250px',
+    maxHeight: '500px',
   },
 };
 

@@ -26,7 +26,8 @@ const customStyles = {
     border: 'none',
     background: 'transparent',
     padding: 20,
-    maxHeight: '500px',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
   },
 };
 

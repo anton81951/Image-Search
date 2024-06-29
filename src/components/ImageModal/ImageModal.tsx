@@ -17,18 +17,16 @@ const customStyles = {
     zIndex: 1000,
   },
   content: {
-    top: '10%',
+    top: '50%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -20%)',
+    transform: 'translate(-50%, -50%)',
     border: 'none',
     background: 'transparent',
-    padding: 0,
-    width: '80%',
-    maxWidth: '250px',
-    maxHeight: '500px',
+    padding: 20,
+    width: '90%',
   },
 };
 

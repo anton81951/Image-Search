@@ -10,7 +10,7 @@ interface ImageModalProps {
   closeModal: () => void;
 }
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     zIndex: 1000,
@@ -24,6 +24,9 @@ const customStyles = {
     transform: 'translate(-50%, 0)',
     border: 'none',
     background: 'transparent',
+    padding: '20px',
+    maxHeight: '500px',
+    maxWidth: '100%',
     boxSizing: 'border-box',
   },
 };
@@ -37,7 +40,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
   return (
     <Modal
       isOpen={isOpen}
-      style={customStyles}
+      style={customStyles as Modal.Styles}
       contentLabel="Image Modal"
       onRequestClose={closeModal}
       shouldCloseOnEsc={true}

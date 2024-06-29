@@ -1,4 +1,3 @@
-import React from 'react';
 import ImageCard from '../ImageCard/ImageCard';
 import { Picture } from '../../pictures-api';
 import styles from './ImageGallery.module.css';

@@ -20,8 +20,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
     <div className={styles.cardContainer} onClick={onImageClick}>
       <img className={styles.cardFrame} src={imageUrl} alt={altText} />
       <div className={styles.cardInfo}>
-        <p>Likes: {likes}</p>
-        <p>Author: {author}</p>
+        <p className={styles.cardStat}>Likes: {likes}</p>
+        <p className={styles.cardStat}>Author: {author}</p>
       </div>
     </div>
   );

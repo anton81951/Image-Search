@@ -24,6 +24,13 @@ const customStyles = {
     border: 'none',
     background: 'transparent',
     padding: 0,
+    '@media (max-width: 768px)': {
+      top: '20px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      margin: 0,
+      maxWidth: '250px',
+    },
   },
 };
 

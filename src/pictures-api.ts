@@ -16,12 +16,16 @@ export interface Picture {
   alt_description: string;
 }
 
+interface ApiResponse {
+  results: Picture[];
+}
+
 export const fetchPictures = async (
   topic: string,
   currentPage: number
 ): Promise<Picture[]> => {
   try {
-    const response: AxiosResponse = await axios.get('/search/photos', {
+    const response: AxiosResponse = await axios.get<ApiResponse>('/search/photos', {
       params: {
         query: topic,
         page: currentPage,

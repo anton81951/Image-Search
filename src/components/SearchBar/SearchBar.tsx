@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <form className={styles.formWrap} onSubmit={handleSubmit}>
       <button className={styles.searchBtn} type="submit">
-        <FaSearch />
+        <FaSearch className={styles.search} />
       </button>
       <input
         className={styles.inputStyle}
